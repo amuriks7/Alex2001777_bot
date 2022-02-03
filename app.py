@@ -34,6 +34,20 @@ def start(m, res=False):
     bot.send_message(m.chat.id, 'Отправьте мне любое слово, и я найду его значение на Wikipedia')
 
 
+@bot.message_handler(commands=['courses'])
+def message_courses(message):
+    keyboard = telebot.types.InlineKeyboardMarkup(row_width=1)
+
+    with open('courses.txt') as file:
+        courses = [item.split(',') for item in file]
+
+        for title, link in courses:
+            url_button = telebot.types.InlineKeyboardButton(text=title.strip(), url=link.strip())
+            keyboard.add(url_button)
+
+        bot.send_message(message.chat.id, 'List of courses', reply_markup=keyboard)
+
+
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     bot.send_message(message.chat.id, getwiki(message.text))
