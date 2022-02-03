@@ -17,7 +17,7 @@ def getwiki(s):
         wikitext_2 = ''
         for x in wikimas:
             if not ('==' in x):
-                if (len(x.strip()) > 3):
+                if len(x.strip()) > 3:
                     wikitext_2 = wikitext_2 + x + '.'
                 else:
                     break
@@ -37,9 +37,6 @@ def start(m, res=False):
 @bot.message_handler(content_types=["text"])
 def handle_text(message):
     bot.send_message(message.chat.id, getwiki(message.text))
-
-
-bot.polling(none_stop=True, interval=0)
 
 
 @app.route('/' + TOKEN, methods=['POST'])
