@@ -3,7 +3,7 @@ import telebot, wikipedia, re
 import os
 
 app = Flask(__name__)
-TOKEN = '5155069086:AAHJMx0_fUqzsqaH4pMMJ6sIiZ37Eubwkzw'
+TOKEN = os.environ.get('TOKEN')
 bot = telebot.TeleBot(TOKEN)
 wikipedia.set_lang("ru")
 
